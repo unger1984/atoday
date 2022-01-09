@@ -1,7 +1,7 @@
 class BookMetaEntity {
   final int id;
   final String title;
-  final String annotation;
+  final String? annotation;
   final int authorId;
   final String authorFIO;
   final String authorUserName;
@@ -12,12 +12,12 @@ class BookMetaEntity {
   final bool coAuthorConfirmed;
   final int? seriesId;
   final String? seriesTitle;
-  final DateTime publishTime;
-  final DateTime lastModificationTime;
+  final DateTime? publishTime;
+  final DateTime? lastModificationTime;
   final DateTime? finishTime;
   final bool isDraft;
-  final String formEnum;
-  final int genreId;
+  final String? formEnum;
+  final int? genreId;
   final int? firstSubGenreId;
   final int? secondSubGenreId;
   final bool adultOnly;
@@ -37,7 +37,7 @@ class BookMetaEntity {
   BookMetaEntity({
     required this.id,
     required this.title,
-    required this.annotation,
+    this.annotation,
     required this.authorId,
     required this.authorFIO,
     required this.authorUserName,
@@ -48,12 +48,12 @@ class BookMetaEntity {
     required this.coAuthorConfirmed,
     this.seriesId,
     this.seriesTitle,
-    required this.publishTime,
-    required this.lastModificationTime,
+    this.publishTime,
+    this.lastModificationTime,
     this.finishTime,
     required this.isDraft,
-    required this.formEnum,
-    required this.genreId,
+    this.formEnum,
+    this.genreId,
     this.firstSubGenreId,
     this.secondSubGenreId,
     required this.adultOnly,

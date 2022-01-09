@@ -1,4 +1,6 @@
 import 'package:atoday/entities/access_entity.dart';
+import 'package:atoday/entities/book_meta_entity.dart';
+import 'package:atoday/entities/chapter_entity.dart';
 import 'package:atoday/entities/form_entity.dart';
 import 'package:atoday/entities/length_entity.dart';
 import 'package:atoday/entities/period_entity.dart';
@@ -17,6 +19,7 @@ abstract class ApiRepository {
   ApiRepository({required this.apiProvider});
 
   Future<SearchResultEntity?> search(SearchQueryEntity query);
+  Future<BookMetaEntity?> info({required int bookId});
   Future<List<PeriodEntity>> periods();
   Future<List<LengthEntity>> lengths();
   Future<List<AccessEntity>> accesses();
@@ -26,4 +29,5 @@ abstract class ApiRepository {
   Future<List<SeriesStatusEntity>> seriesstatuses();
   Future<List<RatingPeriodEntity>> ratingperiods();
   Future<List<PromoEntity>> promos();
+  Future<List<ChapterEntity>> chapters({required int bookId});
 }

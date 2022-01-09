@@ -9,6 +9,7 @@ class SettingsRepositoryImpl extends SettingsRepository {
   Future<void> initialize() async {
     await preferencesProvider.initialize();
     token = preferencesProvider.getString('token');
+    userId = preferencesProvider.getInt('userId');
   }
 
   @override
@@ -18,6 +19,16 @@ class SettingsRepositoryImpl extends SettingsRepository {
       preferencesProvider.remove('token');
     } else {
       preferencesProvider.setString('token', value);
+    }
+  }
+
+  @override
+  set userId(int? value) {
+    super.userId = value;
+    if (value == null) {
+      preferencesProvider.remove('userId');
+    } else {
+      preferencesProvider.setInt('userId', value);
     }
   }
 }

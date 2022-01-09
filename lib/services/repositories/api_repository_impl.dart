@@ -1,4 +1,6 @@
 import 'package:atoday/entities/access_entity.dart';
+import 'package:atoday/entities/book_meta_entity.dart';
+import 'package:atoday/entities/chapter_entity.dart';
 import 'package:atoday/entities/form_entity.dart';
 import 'package:atoday/entities/length_entity.dart';
 import 'package:atoday/entities/period_entity.dart';
@@ -10,6 +12,8 @@ import 'package:atoday/entities/series_status_entity.dart';
 import 'package:atoday/entities/sort_entity.dart';
 import 'package:atoday/entities/status_entity.dart';
 import 'package:atoday/models/access_model.dart';
+import 'package:atoday/models/book_meta_model.dart';
+import 'package:atoday/models/chapter_model.dart';
 import 'package:atoday/models/form_model.dart';
 import 'package:atoday/models/length_model.dart';
 import 'package:atoday/models/period_model.dart';
@@ -40,6 +44,20 @@ class ApiRepositoryImpl extends ApiRepository {
     } catch (exc) {
       l.e(exc);
     }
+
+    return null;
+  }
+
+  @override
+  Future<BookMetaEntity?> info({required int bookId}) async {
+    // try {
+    final res = await apiProvider.get<Map<String, dynamic>>('/work/$bookId/meta-info');
+    if (res != null) {
+      return BookMetaModel.fromJson(res);
+    }
+    // } catch (exc) {
+    //   l.e(exc);
+    // }
 
     return null;
   }
@@ -162,6 +180,20 @@ class ApiRepositoryImpl extends ApiRepository {
       final res = await apiProvider.get<List<Map<String, dynamic>>>('/catalog/promo-fragments');
       if (res != null) {
         return res.map((item) => PromoModel.fromJson(item)).toList();
+      }
+    } catch (exc) {
+      l.e(exc);
+    }
+
+    return [];
+  }
+
+  @override
+  Future<List<ChapterEntity>> chapters({required int bookId}) async {
+    try {
+      final res = await apiProvider.get<List<Map<String, dynamic>>>('/work/$bookId/chapter/many-texts');
+      if (res != null) {
+        return res.map((item) => ChapterModel.fromJson(item)).toList();
       }
     } catch (exc) {
       l.e(exc);
