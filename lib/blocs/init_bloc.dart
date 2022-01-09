@@ -1,6 +1,5 @@
 import 'package:arctium/arctium.dart';
 import 'package:atoday/models/bearer_model.dart';
-import 'package:atoday/models/search_query_model.dart';
 import 'package:atoday/services/providers/api_provider.dart';
 import 'package:atoday/services/providers/api_provider_impl.dart';
 import 'package:atoday/services/repositories/api_repository.dart';
@@ -76,20 +75,20 @@ class InitBLoC extends Bloc<InitEvent, InitState> {
       settingsRepository.userId = bearer.userId;
 
       final apiRepository = Arctium.instance.get<ApiRepository>();
-      final res = await apiRepository.search(const SearchQueryModel(ps: 9999));
-      print(res);
-      // final res1 = await apiRepository.info(bookId: 119353);
+      // final res = await apiRepository.search(const SearchQueryModel(ps: 9999));
+      // print(res);
+      final res1 = await apiRepository.chapters(bookId: 33136);
+      // print(res1);
       // final res1 = await apiProvider.get('/work/149640/meta-info');
-      // if (res1 != null) {
-      //   final chapts = res1.map((item) => ChapterModel.fromJson(item)).toList();
-      //   chapts.forEach((element) {
-      //     if (element.text != null && element.key != null) {
-      //       print(decode(element.text!, element.key!, bearer.userId));
-      //     } else {
-      //       print(element.message);
-      //     }
-      //   });
-      // }
+      if (res1 != null) {
+        res1.forEach((element) {
+          if (element.text != null && element.key != null) {
+            print(decode(element.text!, element.key!, bearer.userId));
+          } else {
+            print(element.message);
+          }
+        });
+      }
       // print(res1);
 
       emit(const SuccessInitState());

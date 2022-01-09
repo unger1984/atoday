@@ -191,7 +191,7 @@ class ApiRepositoryImpl extends ApiRepository {
   @override
   Future<List<ChapterEntity>> chapters({required int bookId}) async {
     try {
-      final res = await apiProvider.get<List<Map<String, dynamic>>>('/work/$bookId/chapter/many-texts');
+      final res = await apiProvider.get<List<dynamic>>('/work/$bookId/chapter/many-texts');
       if (res != null) {
         return res.map((item) => ChapterModel.fromJson(item)).toList();
       }
