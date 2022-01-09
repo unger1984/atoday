@@ -4,8 +4,8 @@ class ChapterEntity {
   final bool isDraft;
   final DateTime? publishTime;
   final DateTime? lastModificationTime;
-  final String? text;
-  final String? key;
+  final String text;
+  final String key;
   final bool isSuccessful;
   final String? message;
 
@@ -15,8 +15,8 @@ class ChapterEntity {
     required this.isDraft,
     this.publishTime,
     this.lastModificationTime,
-    this.text,
-    this.key,
+    required this.text,
+    required this.key,
     required this.isSuccessful,
     this.message,
   });

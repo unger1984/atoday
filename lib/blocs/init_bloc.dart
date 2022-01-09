@@ -80,15 +80,13 @@ class InitBLoC extends Bloc<InitEvent, InitState> {
       final res1 = await apiRepository.chapters(bookId: 33136);
       // print(res1);
       // final res1 = await apiProvider.get('/work/149640/meta-info');
-      if (res1 != null) {
-        res1.forEach((element) {
-          if (element.text != null && element.key != null) {
-            print(decode(element.text!, element.key!, bearer.userId));
-          } else {
-            print(element.message);
-          }
-        });
-      }
+      res1.forEach((element) {
+        if (element.text.isNotEmpty && element.key.isNotEmpty) {
+          print(decode(element.text, element.key, bearer.userId));
+        } else {
+          print(element.message);
+        }
+      });
       // print(res1);
 
       emit(const SuccessInitState());

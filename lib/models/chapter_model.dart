@@ -12,8 +12,8 @@ class ChapterModel extends ChapterEntity with _$ChapterModel {
     @Default(false) bool isDraft,
     @Default(null) DateTime? publishTime,
     @Default(null) DateTime? lastModificationTime,
-    @Default(null) String? text,
-    @Default(null) String? key,
+    @Default('') String text,
+    @Default('') String key,
     @Default(false) bool isSuccessful,
     @Default(null) String? message,
   }) = _ChapterModel;
